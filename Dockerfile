@@ -1,6 +1,6 @@
 # vim:set ft=dockerfile:
 
-# VERSION 1.0
+# VERSION 1.1
 # AUTHOR:         Alexander Turcic <alex@zeitgeist.se>
 # DESCRIPTION:    Beyond Compare in a Docker container
 # TO_BUILD:       docker build --rm -t zeitgeist/docker-bcompare .
@@ -10,11 +10,10 @@
 FROM debian:jessie
 MAINTAINER Alexander Turcic "alex@zeitgeist.se"
 
-ENV BCOMPARE_URL http://www.scootersoftware.com/bcompare-4.0.7.19761_i386.deb
+ENV BCOMPARE_URL http://www.scootersoftware.com/bcompare-4.1.1.20615_amd64.deb
 
 # Install dependencies.
 RUN \
-  dpkg --add-architecture i386 && \
   apt-get update && \
   apt-get install -y wget && \
   wget "${BCOMPARE_URL}" -O bcompare.deb && \
