@@ -16,6 +16,7 @@ ENV BCOMPARE_URL http://www.scootersoftware.com/bcompare-4.1.1.20615_amd64.deb
 RUN \
   apt-get update && \
   apt-get install -y wget && \
+  apt-get install fonts-inconsolata && \
   wget "${BCOMPARE_URL}" -O bcompare.deb && \
   apt-get purge -y --auto-remove wget && \
   { dpkg -i bcompare.deb || true; } && \
@@ -32,5 +33,8 @@ RUN \
 USER user
 WORKDIR /home/user
 VOLUME /home/user
+
+# Enable below if we want to supply our license file
+# COPY BC4Key.txt /usr/lib/beyondcompare/
 
 CMD ["/usr/bin/bcompare"]
