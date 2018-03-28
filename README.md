@@ -43,3 +43,36 @@ $ docker run --rm \
   -v "${HOME}/bcompare":"/home/user" \
   zeitgeist/docker-bcompare
 ```
+
+You can create a shell script for comparing directly two files/folder by running 'script f1 f2':
+
+```bash
+#!/bin/sh
+
+FILES_COMPARE="$@"
+
+docker run -it --rm \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+    -e DISPLAY=unix$DISPLAY \
+    -e FILES="${FILES_COMPARE}" \
+    -v $(pwd):"/home/user" \
+    zeitgeist/docker-bcompare \
+    bash -c 'cd /home/user ; bcompare $FILES'
+```
+
+## OS X
+
+For running in OS X, you can create a shell script like this:
+
+```bash
+#!/bin/sh
+
+ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}') 
+xhost + $ip
+
+docker run -it --rm \
+    -e DISPLAY=$ip:0 \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v "${HOME}/bcompare":"/home/user" \
+    zeitgeist/docker-bcompare 
+```
