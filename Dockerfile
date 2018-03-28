@@ -10,7 +10,7 @@
 FROM debian:jessie
 MAINTAINER Alexander Turcic "alex@zeitgeist.se"
 
-ENV BCOMPARE_URL http://www.scootersoftware.com/bcompare-4.1.3.20814_amd64.deb
+ENV BCOMPARE_URL https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.deb
 
 # Install dependencies.
 RUN \
